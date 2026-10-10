@@ -1,0 +1,1104 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+% ------------------------------------------------
+% PAQUETES
+% ------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+% ------------------------------------------------
+% CONFIGURACIÓN DE COLORES
+% ------------------------------------------------
+\definecolor{AzulInstitucional}{RGB}{0,83,145}
+\definecolor{AzulClaro}{RGB}{224,239,250}
+\definecolor{VerdeEnergia}{RGB}{72,130,76}
+\definecolor{VerdeClaro}{RGB}{231,242,229}
+\definecolor{NaranjaEnergia}{RGB}{211,122,28}
+\definecolor{GrisTexto}{RGB}{65,65,65}
+
+% ------------------------------------------------
+% TEMA
+% ------------------------------------------------
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\setbeamercolor{structure}{fg=AzulInstitucional}
+\setbeamercolor{frametitle}{fg=white,bg=AzulInstitucional}
+\setbeamercolor{title}{fg=AzulInstitucional}
+\setbeamercolor{block title}{fg=white,bg=AzulInstitucional}
+\setbeamercolor{block body}{bg=AzulClaro,fg=GrisTexto}
+\setbeamercolor{alerted text}{fg=NaranjaEnergia}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[default]
+
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.5ex,dp=1ex,leftskip=1em]{author in head/foot}%
+    Diplomado en Energía Circular Inteligente 5.0 --- Módulo 3
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.5ex,dp=1ex,center]{date in head/foot}%
+    \insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}}%
+}
+
+% ------------------------------------------------
+% COMANDOS
+% ------------------------------------------------
+\newcommand{\idea}[1]{
+\begin{block}{Idea clave}
+#1
+\end{block}
+}
+
+\newcommand{\actividad}[1]{
+\begin{alertblock}{Actividad}
+#1
+\end{alertblock}
+}
+
+\newcommand{\pregunta}[1]{
+\begin{exampleblock}{Pregunta orientadora}
+#1
+\end{exampleblock}
+}
+
+% ------------------------------------------------
+% DATOS DEL DOCUMENTO
+% ------------------------------------------------
+\title{Módulo 3\\Energías renovables, almacenamiento y comunidades energéticas}
+\subtitle{Diplomado en Energía Circular Inteligente 5.0}
+\author{Facultad de Ingeniería\\Ingeniería de Sistemas e Ingeniería Mecatrónica}
+\institute{Unicomfacauca}
+\date{Popayán y Santander de Quilichao\\2026}
+
+\begin{document}
+
+% ==================================================
+% PORTADA
+% ==================================================
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Propósito del módulo}
+\justifying
+Comparar soluciones de energía renovable y almacenamiento bajo criterios técnicos, económicos, ambientales y sociales, priorizando medidas de eficiencia energética antes de incorporar nueva capacidad de generación.
+
+\vspace{0.4cm}
+
+\idea{
+El objetivo no es seleccionar la tecnología ``más popular'', sino formular soluciones técnicamente viables, seguras, mantenibles y sostenibles para las condiciones reales del Cauca.
+}
+\end{frame}
+
+\begin{frame}{Distribución del módulo}
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Componente} & \textbf{Teoría} & \textbf{Práctica} & \textbf{Total} \\
+\midrule
+Módulo 3 & 8 horas & 4 horas & 12 horas \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.7cm}
+
+\begin{tabular}{p{0.18\textwidth} p{0.62\textwidth}}
+\textbf{Sesión 1} & Fundamentos de renovables, solar fotovoltaica y evaluación del recurso. \\
+\vspace{0.15cm}
+\textbf{Sesión 2} & Almacenamiento, electrificación, microrredes y comunidades energéticas. \\
+\vspace{0.15cm}
+\textbf{Sesión 3} & Laboratorio de pre-dimensionamiento y diseño conceptual de una solución territorial. \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Resultados de aprendizaje}
+Al finalizar el módulo, el participante podrá:
+
+\begin{itemize}
+    \item Caracterizar el recurso solar y relacionarlo con perfiles de demanda.
+    \item Diferenciar generación fotovoltaica, almacenamiento, electrificación, respaldo y microrredes.
+    \item Realizar un pre-dimensionamiento energético argumentado.
+    \item Comparar alternativas de baterías y proponer una estrategia básica de operación.
+    \item Formular una alternativa de energía renovable o comunidad energética con criterios de gobernanza.
+    \item Identificar restricciones de seguridad, mantenimiento, sostenibilidad financiera y disposición final.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ruta de aprendizaje}
+\centering
+\begin{tikzpicture}[node distance=1.8cm, >=latex, every node/.style={align=center}]
+
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, minimum width=2.7cm, minimum height=1cm] (ef) {1. Eficiencia\\energética};
+
+\node[draw=VerdeEnergia, rounded corners, fill=VerdeClaro, right=of ef, minimum width=2.7cm, minimum height=1cm] (dem) {2. Perfil de\\demanda};
+
+\node[draw=NaranjaEnergia, rounded corners, fill=orange!15, right=of dem, minimum width=2.7cm, minimum height=1cm] (ren) {3. Renovables y\\almacenamiento};
+
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, below=of dem, minimum width=3.1cm, minimum height=1cm] (sol) {4. Solución viable\\y sostenible};
+
+\draw[->, thick] (ef) -- (dem);
+\draw[->, thick] (dem) -- (ren);
+\draw[->, thick] (ren) -- (sol);
+\draw[->, thick] (ef) -- (sol);
+
+\end{tikzpicture}
+
+\vspace{0.4cm}
+
+\idea{
+La generación renovable no reemplaza el diagnóstico energético. Primero se identifica cómo, cuándo y para qué se consume la energía.
+}
+\end{frame}
+
+% ==================================================
+% SESIÓN 1
+% ==================================================
+\section{Sesión 1}
+
+\begin{frame}{Sesión 1: Renovables y energía solar fotovoltaica}
+\begin{columns}
+\column{0.55\textwidth}
+\textbf{Duración:} 4 horas teóricas.
+
+\vspace{0.3cm}
+
+\textbf{Temas centrales:}
+\begin{itemize}
+    \item Transición energética y jerarquía de decisiones.
+    \item Recursos renovables aplicables al territorio.
+    \item Fundamentos de sistemas solares fotovoltaicos.
+    \item Recurso solar, irradiación, orientación y sombras.
+    \item Autoconsumo, autogeneración y generación distribuida.
+\end{itemize}
+
+\column{0.40\textwidth}
+\begin{block}{Producto parcial}
+Mapa inicial de oportunidad energética y definición preliminar del caso de estudio.
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{¿Por qué no empezar por instalar paneles?}
+\begin{enumerate}
+    \item Identificar el problema energético real.
+    \item Construir una línea base de consumo y costos.
+    \item Reducir pérdidas y usos ineficientes.
+    \item Ajustar o desplazar cargas cuando sea posible.
+    \item Evaluar generación renovable y almacenamiento.
+    \item Definir responsables de operación, mantenimiento y financiación.
+\end{enumerate}
+
+\pregunta{
+¿Tiene sentido instalar un sistema solar en una organización cuyo principal desperdicio energético ocurre fuera de las horas de sol?
+}
+\end{frame}
+
+\begin{frame}{Alternativas de suministro y flexibilidad}
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.20\textwidth} p{0.28\textwidth} p{0.35\textwidth}}
+\toprule
+\textbf{Alternativa} & \textbf{Aporte principal} & \textbf{Condiciones y limitaciones} \\
+\midrule
+Solar fotovoltaica & Generación eléctrica distribuida & Depende del recurso solar, área disponible, sombras, perfil de consumo y red. \\
+\addlinespace
+Biomasa y biogás & Aprovechamiento energético de residuos & Requiere suministro continuo, control de humedad, logística y gestión de emisiones. \\
+\addlinespace
+Baterías & Respaldo, desplazamiento de consumo y flexibilidad & Implican costos, degradación, seguridad y disposición final. \\
+\addlinespace
+Electrificación & Sustitución de usos térmicos o combustibles & Exige revisar potencia disponible, red, proceso y costos operativos. \\
+\addlinespace
+Gestión de demanda & Ajuste de horarios y potencia requerida & Depende de procesos flexibles y capacidad de operación. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Tecnologías renovables en contexto}
+\begin{columns}
+\column{0.48\textwidth}
+\textbf{Solar fotovoltaica}
+\begin{itemize}
+    \item Convierte irradiación solar en electricidad.
+    \item Es modular y escalable.
+    \item Puede operar conectada a red o aislada.
+    \item Resulta pertinente para cubiertas, bombeo, comercio, instituciones y vivienda rural.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Biomasa y biogás}
+\begin{itemize}
+    \item Aprovechan residuos orgánicos o agroindustriales.
+    \item Pueden producir calor, electricidad o biogás.
+    \item Requieren balances de disponibilidad y logística.
+    \item Son relevantes para café, alimentos, lácteos y residuos orgánicos.
+\end{itemize}
+\end{columns}
+
+\vspace{0.4cm}
+
+\idea{
+Una fuente renovable es apropiada cuando responde a una necesidad comprobada y puede operarse de manera segura y sostenida.
+}
+\end{frame}
+
+\begin{frame}{Sistema solar fotovoltaico: componentes básicos}
+\centering
+\begin{tikzpicture}[node distance=1.5cm, >=latex, every node/.style={align=center,font=\small}]
+\node[draw=VerdeEnergia, rounded corners, fill=VerdeClaro, minimum width=2.4cm, minimum height=0.85cm] (panel) {Módulos\\fotovoltaicos};
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, right=of panel, minimum width=2.4cm, minimum height=0.85cm] (inv) {Inversor o\\controlador};
+\node[draw=NaranjaEnergia, rounded corners, fill=orange!15, right=of inv, minimum width=2.4cm, minimum height=0.85cm] (load) {Cargas\\eléctricas};
+
+\node[draw=GrisTexto, rounded corners, fill=gray!15, below=of inv, minimum width=2.4cm, minimum height=0.85cm] (bat) {Batería\\opcional};
+
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, below=of load, minimum width=2.4cm, minimum height=0.85cm] (grid) {Red eléctrica\\opcional};
+
+\draw[->, thick] (panel) -- (inv);
+\draw[->, thick] (inv) -- (load);
+\draw[<->, thick] (inv) -- (bat);
+\draw[<->, thick] (inv) -- (grid);
+\end{tikzpicture}
+
+\vspace{0.5cm}
+
+\begin{itemize}
+    \item Los sistemas conectados a red suelen priorizar el autoconsumo.
+    \item Las baterías no son obligatorias en todos los proyectos.
+    \item La protección eléctrica, puesta a tierra, cableado y seguridad son componentes esenciales.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conceptos eléctricos esenciales}
+\begin{columns}
+\column{0.48\textwidth}
+\begin{block}{Potencia}
+La potencia representa la rapidez con que se utiliza o entrega energía.
+
+\[
+P = V \times I
+\]
+
+Donde \(P\) se expresa en watts (W), \(V\) en volts (V) e \(I\) en amperes (A).
+\end{block}
+
+\column{0.48\textwidth}
+\begin{block}{Energía}
+La energía acumulada durante un período depende de la potencia y el tiempo.
+
+\[
+E = P \times t
+\]
+
+La energía eléctrica suele expresarse en kilowatt-hora (kWh).
+\end{block}
+\end{columns}
+
+\vspace{0.35cm}
+
+\idea{
+Un panel de 500 W no entrega necesariamente 500 W de forma continua. La potencia real depende de la irradiación, temperatura, orientación, sombras y condiciones del sistema.
+}
+\end{frame}
+
+\begin{frame}{Irradiación solar y energía generada}
+La energía aproximada de un sistema fotovoltaico puede estimarse de manera preliminar mediante:
+
+\[
+E_{\text{FV}} \approx P_{\text{instalada}} \times HSP \times PR
+\]
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Variable} & \textbf{Significado} \\
+\midrule
+\(E_{\text{FV}}\) & Energía generada en un período, usualmente en kWh. \\
+\(P_{\text{instalada}}\) & Potencia nominal de los módulos, en kW. \\
+\(HSP\) & Horas sol pico promedio del período. \\
+\(PR\) & Factor de desempeño: pérdidas por temperatura, suciedad, cables, inversor, sombras y otras. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\alert{Esta ecuación es para pre-dimensionamiento; no sustituye un diseño definitivo ni una simulación detallada.}
+\end{frame}
+
+\begin{frame}{Ejemplo preliminar de generación}
+\textbf{Caso:} cubierta de una institución educativa con un sistema de \(10\) kW.
+
+\[
+E_{\text{FV}} \approx 10 \text{ kW} \times 4.5 \text{ h/día} \times 0.80
+\]
+
+\[
+E_{\text{FV}} \approx 36 \text{ kWh/día}
+\]
+
+\begin{itemize}
+    \item En un mes de 30 días, la estimación sería aproximadamente \(1{,}080\) kWh.
+    \item El resultado debe contrastarse con el perfil horario de consumo.
+    \item Si la mayor parte de la demanda ocurre en la noche, la generación solar por sí sola no cubrirá ese consumo en el momento de uso.
+\end{itemize}
+
+\actividad{
+Discuta qué información adicional sería necesaria antes de recomendar la compra del sistema.
+}
+\end{frame}
+
+\begin{frame}{Orientación, inclinación y sombras}
+\begin{columns}
+\column{0.5\textwidth}
+\textbf{Orientación e inclinación}
+\begin{itemize}
+    \item Buscan maximizar o adecuar la captación solar.
+    \item Deben considerar latitud, tipo de cubierta, drenaje, viento y mantenimiento.
+    \item La decisión no depende únicamente de la máxima generación anual.
+\end{itemize}
+
+\column{0.5\textwidth}
+\textbf{Sombras}
+\begin{itemize}
+    \item Pueden provenir de árboles, edificios, postes, antenas o elementos de cubierta.
+    \item Cambian con la hora y la época del año.
+    \item Una sombra parcial puede afectar de forma significativa el rendimiento de un arreglo.
+\end{itemize}
+\end{columns}
+
+\vspace{0.4cm}
+
+\pregunta{
+¿Qué ocurriría con la producción si la cubierta recibe sombra de árboles entre las 2:00 p.\,m. y las 4:00 p.\,m.?
+}
+\end{frame}
+
+\begin{frame}{Autoconsumo y perfil de demanda}
+\centering
+\begin{tikzpicture}[x=1.1cm,y=0.6cm]
+\draw[->] (0,0) -- (10,0) node[right] {Hora};
+\draw[->] (0,0) -- (0,5.5) node[above] {Potencia};
+
+\draw[thick,AzulInstitucional] plot[smooth] coordinates {
+(0.5,1.0) (1.5,0.8) (2.5,1.0) (3.5,2.0) (4.5,3.5) (5.5,4.5)
+(6.5,4.7) (7.5,4.1) (8.5,2.5) (9.5,1.5)};
+
+\draw[thick,VerdeEnergia] plot[smooth] coordinates {
+(0.5,0.0) (1.5,0.0) (2.5,0.2) (3.5,1.5) (4.5,3.2) (5.5,4.2)
+(6.5,3.8) (7.5,2.3) (8.5,0.7) (9.5,0.0)};
+
+\node[AzulInstitucional] at (7.5,5.1) {Demanda};
+\node[VerdeEnergia] at (7.4,3.0) {Generación FV};
+\end{tikzpicture}
+
+\vspace{0.3cm}
+
+\begin{itemize}
+    \item El autoconsumo ocurre cuando la generación coincide con la demanda local.
+    \item La coincidencia temporal es tan importante como la energía total mensual.
+    \item Las medidas de gestión de carga pueden aumentar el aprovechamiento de la generación solar.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Criterios para evaluar una alternativa solar}
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.24\textwidth} p{0.61\textwidth}}
+\toprule
+\textbf{Criterio} & \textbf{Preguntas de evaluación} \\
+\midrule
+Técnico & ¿Existe área útil? ¿Hay sombras? ¿La red soporta la solución? ¿Qué perfil de demanda tiene el usuario? \\
+\addlinespace
+Económico & ¿Cuál es la inversión? ¿Qué ahorro se espera? ¿Qué costos de operación y reemplazo existen? \\
+\addlinespace
+Ambiental & ¿Qué materiales se usarán? ¿Cómo se gestionarán módulos, inversores y baterías al final de su vida útil? \\
+\addlinespace
+Social y territorial & ¿Quién opera? ¿Quién da mantenimiento? ¿Existe apropiación, capacidad de pago y gobernanza? \\
+\addlinespace
+Seguridad & ¿Qué protecciones, señalización, procedimientos y personal competente se requieren? \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Cierre de sesión 1}
+\begin{itemize}
+    \item Las tecnologías renovables se evalúan después de comprender y mejorar el consumo.
+    \item La solar fotovoltaica depende de recurso, área, sombras, perfil de demanda y condiciones de red.
+    \item El pre-dimensionamiento es una estimación inicial; no equivale a diseño eléctrico definitivo.
+    \item Una solución sostenible requiere operación, mantenimiento, seguridad y responsables claros.
+\end{itemize}
+
+\actividad{
+Para la siguiente sesión, cada equipo debe seleccionar un caso preliminar: vivienda rural, bombeo, comercio, institución educativa, pequeña planta, hotel, acueducto o comunidad energética.
+}
+\end{frame}
+
+% ==================================================
+% SESIÓN 2
+% ==================================================
+\section{Sesión 2}
+
+\begin{frame}{Sesión 2: Almacenamiento, microrredes y comunidades energéticas}
+\begin{columns}
+\column{0.55\textwidth}
+\textbf{Duración:} 4 horas teóricas.
+
+\vspace{0.3cm}
+
+\textbf{Temas centrales:}
+\begin{itemize}
+    \item Almacenamiento electroquímico y operación de baterías.
+    \item Electrificación de usos finales.
+    \item Microrredes, respaldo y gestión de demanda.
+    \item Biomasa y biogás: balances preliminares.
+    \item Comunidades energéticas, gobernanza y sostenibilidad.
+\end{itemize}
+
+\column{0.40\textwidth}
+\begin{block}{Producto parcial}
+Alternativa tecnológica seleccionada y criterios iniciales de operación.
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{¿Por qué almacenar energía?}
+Las baterías pueden cumplir varias funciones:
+
+\begin{itemize}
+    \item Respaldar cargas críticas ante interrupciones del servicio.
+    \item Desplazar el uso de energía entre horas de generación y consumo.
+    \item Mejorar el aprovechamiento local de generación fotovoltaica.
+    \item Reducir picos de demanda en determinados casos.
+    \item Permitir operación aislada o en microrredes.
+    \item Dar continuidad a cargas como bombeo, refrigeración, comunicaciones o equipos esenciales.
+\end{itemize}
+
+\idea{
+Una batería no ``crea'' energía: almacena parte de la energía producida o recibida y entrega menos energía útil de la que recibe debido a pérdidas.
+}
+\end{frame}
+
+\begin{frame}{Variables fundamentales de una batería}
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.26\textwidth} p{0.57\textwidth}}
+\toprule
+\textbf{Variable} & \textbf{Interpretación} \\
+\midrule
+Capacidad nominal & Cantidad de energía que puede almacenar en condiciones definidas, usualmente en kWh. \\
+\addlinespace
+Potencia & Capacidad de entregar o recibir energía rápidamente, expresada en kW. \\
+\addlinespace
+Estado de carga (SOC) & Porcentaje aproximado de energía almacenada respecto a la capacidad disponible. \\
+\addlinespace
+Profundidad de descarga (DoD) & Fracción de la batería que se utiliza; afecta su vida útil. \\
+\addlinespace
+Eficiencia de ciclo & Relación entre la energía recuperada y la energía utilizada para cargarla. \\
+\addlinespace
+Ciclos de vida & Número de ciclos antes de que la capacidad se reduzca a un nivel especificado. \\
+\addlinespace
+Degradación & Pérdida progresiva de capacidad causada por uso, temperatura, tiempo y operación. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Energía útil de un banco de baterías}
+Una aproximación inicial puede expresarse como:
+
+\[
+E_{\text{útil}} = E_{\text{nominal}} \times DoD \times \eta
+\]
+
+Donde:
+
+\begin{itemize}
+    \item \(E_{\text{útil}}\): energía disponible para la carga.
+    \item \(E_{\text{nominal}}\): energía nominal del banco.
+    \item \(DoD\): profundidad máxima de descarga permitida.
+    \item \(\eta\): eficiencia global del sistema.
+\end{itemize}
+
+\begin{exampleblock}{Ejemplo}
+Un banco de \(10\) kWh, con \(DoD = 0.80\) y eficiencia global de \(0.90\), puede entregar aproximadamente:
+
+\[
+10 \times 0.80 \times 0.90 = 7.2 \text{ kWh}
+\]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Comparación conceptual de tecnologías de batería}
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.22\textwidth} p{0.22\textwidth} p{0.46\textwidth}}
+\toprule
+\textbf{Tecnología} & \textbf{Fortalezas} & \textbf{Aspectos a verificar} \\
+\midrule
+Plomo-ácido & Costo inicial relativamente bajo, uso extendido & Menor profundidad de descarga útil, mayor peso, mantenimiento según tecnología, menor vida útil. \\
+\addlinespace
+Ion-litio & Mayor densidad energética, mayor eficiencia y vida útil en muchas aplicaciones & Costo inicial, sistema de gestión de batería, compatibilidad, seguridad y gestión al final de vida. \\
+\addlinespace
+Otras tecnologías & Pueden responder a necesidades específicas & Disponibilidad, madurez, soporte local, costos, garantía y condiciones de uso. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\alert{La selección debe basarse en el caso de uso, no únicamente en capacidad nominal o precio de compra.}
+\end{frame}
+
+\begin{frame}{Seguridad en sistemas de almacenamiento}
+\begin{itemize}
+    \item Instalar sistemas de acuerdo con especificaciones técnicas, normas aplicables y supervisión competente.
+    \item Evitar cortocircuitos, sobrecarga, descarga excesiva y exposición térmica inadecuada.
+    \item Incorporar protecciones, fusibles, interruptores, ventilación y señalización según el sistema.
+    \item Definir procedimientos de inspección, respuesta ante incidentes y mantenimiento.
+    \item No intervenir bancos de baterías sin autorización, capacitación y elementos de protección adecuados.
+    \item Planear el manejo y disposición final de las baterías.
+\end{itemize}
+
+\idea{
+El almacenamiento agrega flexibilidad, pero también agrega responsabilidades técnicas, económicas, ambientales y de seguridad.
+}
+\end{frame}
+
+\begin{frame}{Electrificación de usos finales}
+\begin{columns}
+\column{0.47\textwidth}
+\textbf{Ejemplos de electrificación}
+\begin{itemize}
+    \item Sustitución de equipos térmicos ineficientes.
+    \item Bombeo eléctrico eficiente.
+    \item Cocción eléctrica en casos viables.
+    \item Refrigeración eficiente.
+    \item Movilidad eléctrica y recarga.
+    \item Procesos productivos con control eléctrico.
+\end{itemize}
+
+\column{0.47\textwidth}
+\textbf{Preguntas de evaluación}
+\begin{itemize}
+    \item ¿La red tiene capacidad disponible?
+    \item ¿Cuál es la nueva demanda máxima?
+    \item ¿Qué ocurre con los costos operativos?
+    \item ¿El proceso conserva su calidad y productividad?
+    \item ¿Qué medidas de eficiencia deben implementarse antes?
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Microrredes: concepto básico}
+\centering
+\begin{tikzpicture}[node distance=1.4cm, >=latex, every node/.style={align=center,font=\small}]
+\node[draw=VerdeEnergia, rounded corners, fill=VerdeClaro, minimum width=2cm, minimum height=0.8cm] (solar) {Solar FV};
+\node[draw=GrisTexto, rounded corners, fill=gray!15, right=of solar, minimum width=2cm, minimum height=0.8cm] (bat) {Baterías};
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, right=of bat, minimum width=2cm, minimum height=0.8cm] (loads) {Cargas\\críticas};
+
+\node[draw=NaranjaEnergia, rounded corners, fill=orange!15, below=of bat, minimum width=2.2cm, minimum height=0.8cm] (control) {Control y\\medición};
+
+\node[draw=AzulInstitucional, rounded corners, fill=AzulClaro, below=of solar, minimum width=2cm, minimum height=0.8cm] (grid) {Red o\\respaldo};
+
+\draw[<->, thick] (solar) -- (bat);
+\draw[<->, thick] (bat) -- (loads);
+\draw[<->, thick] (bat) -- (control);
+\draw[<->, thick] (grid) -- (control);
+\draw[->, thick] (solar) -- (control);
+\end{tikzpicture}
+
+\vspace{0.45cm}
+
+Una microrred integra generación, almacenamiento, cargas, control y, según el caso, conexión a la red principal o una fuente de respaldo.
+\end{frame}
+
+\begin{frame}{Gestión de demanda y cargas críticas}
+\begin{columns}
+\column{0.48\textwidth}
+\textbf{Gestión de demanda}
+\begin{itemize}
+    \item Cambiar horarios de operación.
+    \item Evitar coincidencia de cargas de alta potencia.
+    \item Programar bombeo o refrigeración en horas de generación solar.
+    \item Priorizar mantenimiento y eficiencia.
+    \item Automatizar cargas flexibles.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Cargas críticas}
+\begin{itemize}
+    \item Iluminación de emergencia.
+    \item Equipos de comunicación.
+    \item Refrigeración de medicamentos o alimentos.
+    \item Sistemas de bombeo prioritarios.
+    \item Seguridad y control.
+\end{itemize}
+\end{columns}
+
+\vspace{0.3cm}
+
+\pregunta{
+¿Todas las cargas de una organización requieren respaldo? ¿Cómo se priorizan?
+}
+\end{frame}
+
+\begin{frame}{Biomasa y biogás: evaluación preliminar}
+Antes de proponer una solución basada en biomasa se debe caracterizar:
+
+\begin{itemize}
+    \item Tipo de residuo disponible.
+    \item Cantidad generada por día, semana o cosecha.
+    \item Humedad y condiciones de almacenamiento.
+    \item Poder calorífico o potencial de producción de biogás.
+    \item Distancia de transporte y costos logísticos.
+    \item Uso energético requerido: calor, electricidad, cocción, secado o combustible.
+    \item Emisiones, olores, efluentes y subproductos.
+    \item Responsable de operación y mantenimiento.
+\end{itemize}
+
+\idea{
+No todo residuo es una fuente energética viable. La disponibilidad real, la estacionalidad y la logística determinan la factibilidad.
+}
+\end{frame}
+
+\begin{frame}{Balance preliminar de biomasa}
+\begin{block}{Preguntas básicas}
+\begin{enumerate}
+    \item ¿Cuántos kilogramos o toneladas de residuo se generan?
+    \item ¿Con qué frecuencia se generan?
+    \item ¿Qué fracción puede recuperarse realmente?
+    \item ¿Cuál es la humedad del material?
+    \item ¿Qué energía útil puede obtenerse?
+    \item ¿Qué uso energético puede reemplazar?
+\end{enumerate}
+\end{block}
+
+\begin{exampleblock}{Ejemplo conceptual}
+Un residuo de café puede tener potencial energético, pero su uso dependerá de la cantidad disponible, humedad, requerimientos de secado, transporte, tecnología seleccionada y manejo seguro de subproductos.
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Comunidades energéticas}
+Una comunidad energética puede entenderse como una forma de organización en la que actores del territorio participan en soluciones de energía con objetivos sociales, económicos, ambientales y de acceso.
+
+\vspace{0.3cm}
+
+\begin{columns}
+\column{0.48\textwidth}
+\textbf{Dimensión técnica}
+\begin{itemize}
+    \item Generación distribuida.
+    \item Medición y monitoreo.
+    \item Almacenamiento o respaldo.
+    \item Calidad y continuidad del servicio.
+    \item Mantenimiento de activos.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Dimensión social y organizativa}
+\begin{itemize}
+    \item Participación de la comunidad.
+    \item Reglas de operación.
+    \item Propiedad y distribución de beneficios.
+    \item Formación de usuarios.
+    \item Sostenibilidad financiera.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Gobernanza de una comunidad energética}
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.25\textwidth} p{0.57\textwidth}}
+\toprule
+\textbf{Aspecto} & \textbf{Preguntas orientadoras} \\
+\midrule
+Actores & ¿Quiénes participan? ¿Usuarios, cooperativas, instituciones, empresa, alcaldía, universidad? \\
+\addlinespace
+Propiedad & ¿A quién pertenecen los activos? ¿Quién responde por reposición y mantenimiento? \\
+\addlinespace
+Beneficios & ¿Cómo se distribuyen los ahorros, ingresos o mejoras en continuidad del servicio? \\
+\addlinespace
+Operación & ¿Quién toma decisiones, registra incidencias y coordina el mantenimiento? \\
+\addlinespace
+Sostenibilidad & ¿Qué recursos cubren mantenimiento, reposición de equipos y formación? \\
+\addlinespace
+Participación & ¿Cómo se informa, consulta y vincula a las personas usuarias? \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Caso territorial: bombeo para acueducto comunitario}
+\textbf{Situación:} un acueducto comunitario requiere bombear agua y enfrenta costos de electricidad, interrupciones ocasionales y limitaciones de presupuesto.
+
+\vspace{0.3cm}
+
+\textbf{Alternativas posibles:}
+\begin{itemize}
+    \item Mejorar eficiencia de la bomba y revisar fugas antes de generar energía.
+    \item Ajustar horarios de bombeo hacia horas solares, si el almacenamiento de agua lo permite.
+    \item Evaluar un sistema fotovoltaico para autoconsumo.
+    \item Evaluar baterías únicamente si las cargas críticas y las interrupciones lo justifican.
+    \item Diseñar monitoreo de caudal, nivel de tanque, energía y estado de operación.
+    \item Definir responsabilidades comunitarias para mantenimiento y sostenimiento.
+\end{itemize}
+
+\actividad{
+Identifique dos beneficios y dos riesgos de incorporar un sistema solar con almacenamiento en este caso.
+}
+\end{frame}
+
+\begin{frame}{Cierre de sesión 2}
+\begin{itemize}
+    \item El almacenamiento se justifica por una función concreta: respaldo, flexibilidad, autoconsumo o operación aislada.
+    \item Las baterías deben evaluarse por energía útil, potencia, ciclos, eficiencia, degradación, seguridad y fin de vida.
+    \item Las microrredes combinan componentes técnicos y reglas de operación.
+    \item La biomasa requiere balances de disponibilidad, humedad, logística y uso final.
+    \item Las comunidades energéticas necesitan gobernanza y sostenibilidad, además de tecnología.
+\end{itemize}
+
+\actividad{
+Cada equipo debe llegar a la sesión práctica con datos o supuestos explícitos sobre su caso: consumo, demanda, horarios, área disponible, cargas críticas y restricciones.
+}
+\end{frame}
+
+% ==================================================
+% SESIÓN 3
+% ==================================================
+\section{Sesión 3}
+
+\begin{frame}{Sesión 3: Laboratorio de pre-dimensionamiento}
+\begin{columns}
+\column{0.55\textwidth}
+\textbf{Duración:} 4 horas prácticas.
+
+\vspace{0.3cm}
+
+\textbf{Objetivo:} construir una propuesta preliminar y reproducible de solución renovable, de almacenamiento o de comunidad energética.
+
+\vspace{0.3cm}
+
+\textbf{Modalidad:} equipos de 3 a 5 participantes.
+
+\column{0.40\textwidth}
+\begin{block}{Evidencia esperada}
+Pre-dimensionamiento argumentado, modelo energético reproducible, esquema de operación y propuesta de sostenibilidad.
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Reto de laboratorio}
+Cada equipo desarrollará una propuesta para uno de los siguientes casos:
+
+\begin{itemize}
+    \item Vivienda rural con necesidades básicas de electricidad.
+    \item Bombeo para riego o acueducto comunitario.
+    \item Refrigeración de productos agrícolas o alimentos.
+    \item Cubierta solar para institución educativa.
+    \item Autoconsumo en comercio, hotel, restaurante o pequeña planta.
+    \item Aprovechamiento de un residuo agroindustrial.
+    \item Comunidad energética en etapa conceptual.
+\end{itemize}
+
+\pregunta{
+¿Qué problema energético específico se resolverá y cuál es el indicador que permitirá demostrar una mejora?
+}
+\end{frame}
+
+\begin{frame}{Secuencia de trabajo práctico}
+\centering
+\begin{enumerate}
+    \item Definir alcance, usuarios, problema y restricciones.
+    \item Construir o asumir una línea base energética documentada.
+    \item Identificar medidas de eficiencia previas.
+    \item Caracterizar la demanda: energía, potencia y horarios.
+    \item Seleccionar una alternativa tecnológica pertinente.
+    \item Realizar el pre-dimensionamiento.
+    \item Evaluar operación, mantenimiento, seguridad y fin de vida.
+    \item Preparar una propuesta de sostenibilidad y presentación técnica.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Actividad 1: Caracterización de demanda}
+\textbf{Tiempo sugerido: 45 minutos}
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.25\textwidth} p{0.14\textwidth} p{0.15\textwidth} p{0.18\textwidth} p{0.16\textwidth}}
+\toprule
+\textbf{Equipo o carga} & \textbf{Potencia} & \textbf{Cantidad} & \textbf{Horas/día} & \textbf{Energía/día} \\
+\midrule
+Iluminación & & & & \\
+Bomba & & & & \\
+Refrigeración & & & & \\
+Computadores & & & & \\
+Otros & & & & \\
+\midrule
+\textbf{Total} & & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.3cm}
+
+\[
+E_{\text{día}} = \sum (P_i \times n_i \times t_i)
+\]
+
+\begin{itemize}
+    \item Registrar supuestos y fuente de cada dato.
+    \item Diferenciar cargas críticas, flexibles y no prioritarias.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Actividad 2: Perfil horario de carga}
+\textbf{Tiempo sugerido: 30 minutos}
+
+\begin{itemize}
+    \item Distribuir la energía diaria por intervalos horarios.
+    \item Identificar las horas de mayor consumo.
+    \item Señalar cargas que pueden trasladarse hacia el período solar.
+    \item Identificar la demanda máxima aproximada.
+    \item Determinar si el problema principal es consumo total, potencia máxima, interrupciones o falta de acceso.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\idea{
+Dos organizaciones con el mismo consumo mensual pueden requerir soluciones completamente diferentes si sus perfiles horarios no coinciden.
+}
+\end{frame}
+
+\begin{frame}{Actividad 3: Pre-dimensionamiento fotovoltaico}
+\textbf{Tiempo sugerido: 45 minutos}
+
+Para una primera aproximación:
+
+\[
+P_{\text{FV}} \approx \frac{E_{\text{objetivo}}}{HSP \times PR}
+\]
+
+\begin{itemize}
+    \item Definir \(E_{\text{objetivo}}\): energía que se pretende cubrir con la solución.
+    \item Seleccionar un valor documentado o asumido de horas sol pico.
+    \item Utilizar un factor de desempeño conservador.
+    \item Comparar la generación estimada con el perfil horario de demanda.
+    \item Verificar de manera preliminar disponibilidad de área y posibles sombras.
+\end{itemize}
+
+\begin{exampleblock}{Ejemplo}
+Para cubrir \(30\) kWh/día, con \(HSP=4.5\) y \(PR=0.80\):
+
+\[
+P_{\text{FV}} \approx \frac{30}{4.5 \times 0.80} = 8.33 \text{ kW}
+\]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Actividad 4: Dimensionamiento preliminar de batería}
+\textbf{Tiempo sugerido: 30 minutos}
+
+Cuando el caso requiera respaldo o desplazamiento de energía:
+
+\[
+E_{\text{batería nominal}} \approx \frac{E_{\text{respaldo}}}{DoD \times \eta}
+\]
+
+\begin{itemize}
+    \item Definir qué cargas se respaldarán.
+    \item Definir durante cuánto tiempo se requiere respaldo.
+    \item Estimar la energía de respaldo requerida.
+    \item Considerar profundidad de descarga y eficiencia.
+    \item Verificar que la potencia de la batería o inversor soporte la demanda máxima de las cargas críticas.
+\end{itemize}
+
+\alert{No añadir batería automáticamente. Justificar su función y comparar su costo con alternativas de gestión de demanda o almacenamiento no eléctrico, como tanques de agua.}
+\end{frame}
+
+\begin{frame}{Actividad 5: Selección multicriterio}
+\textbf{Tiempo sugerido: 30 minutos}
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{p{0.25\textwidth} c c c c}
+\toprule
+\textbf{Criterio} & \textbf{Peso} & \textbf{Alternativa A} & \textbf{Alternativa B} & \textbf{Alternativa C} \\
+\midrule
+Costo inicial & & & & \\
+Ahorro o beneficio esperado & & & & \\
+Confiabilidad & & & & \\
+Facilidad de mantenimiento & & & & \\
+Seguridad & & & & \\
+Impacto ambiental & & & & \\
+Aceptación y gobernanza & & & & \\
+Disponibilidad de repuestos & & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+    \item Definir escalas de calificación.
+    \item Explicar cada puntuación con evidencia, datos o supuestos.
+    \item No usar la matriz para ocultar incertidumbres.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Actividad 6: Esquema de operación}
+\textbf{Tiempo sugerido: 25 minutos}
+
+El equipo debe responder:
+
+\begin{itemize}
+    \item ¿Cómo circula la energía desde la fuente hasta las cargas?
+    \item ¿Qué ocurre cuando hay baja generación solar?
+    \item ¿Qué cargas se priorizan?
+    \item ¿Qué variable se medirá: energía, potencia, irradiación, estado de batería, caudal o temperatura?
+    \item ¿Quién realiza inspección y mantenimiento?
+    \item ¿Qué falla probable debe ser detectada tempranamente?
+\end{itemize}
+
+\begin{block}{Sugerencia de herramientas}
+Puede utilizarse un diagrama elaborado en PowerPoint, Draw.io, Canva, FreeCAD, Blender, QGIS, una hoja de cálculo o un esquema a mano digitalizado.
+\end{block}
+\end{frame}
+
+\begin{frame}{Actividad 7: Sostenibilidad de la solución}
+\textbf{Tiempo sugerido: 20 minutos}
+
+\begin{columns}
+\column{0.48\textwidth}
+\textbf{Sostenibilidad técnica}
+\begin{itemize}
+    \item Plan de mantenimiento.
+    \item Disponibilidad de repuestos.
+    \item Personal responsable.
+    \item Seguridad eléctrica.
+    \item Monitoreo de desempeño.
+\end{itemize}
+
+\column{0.48\textwidth}
+\textbf{Sostenibilidad organizativa}
+\begin{itemize}
+    \item Propiedad de los activos.
+    \item Financiación de operación y reposición.
+    \item Reglas de uso.
+    \item Formación de usuarios.
+    \item Participación de actores.
+\end{itemize}
+\end{columns}
+
+\vspace{0.35cm}
+
+\idea{
+La solución no termina cuando se instala: debe poder mantenerse, repararse, financiarse y comprenderse durante su vida útil.
+}
+\end{frame}
+
+\begin{frame}{Entregable del módulo}
+Cada equipo presentará un documento o presentación breve que incluya:
+
+\begin{enumerate}
+    \item Descripción del caso, problema y restricciones.
+    \item Línea base o supuestos energéticos documentados.
+    \item Perfil de demanda y cargas prioritarias.
+    \item Medidas de eficiencia recomendadas.
+    \item Alternativa renovable, de almacenamiento o comunitaria seleccionada.
+    \item Pre-dimensionamiento con cálculos reproducibles.
+    \item Esquema de operación y medición.
+    \item Riesgos, supuestos, mantenimiento y sostenibilidad.
+    \item Recomendación final y aspectos que requieren validación profesional posterior.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Rúbrica sugerida de evaluación}
+\centering
+\small
+\begin{tabular}{p{0.58\textwidth} c}
+\toprule
+\textbf{Criterio} & \textbf{Peso} \\
+\midrule
+Claridad del problema, alcance y contexto territorial & 15\% \\
+Calidad de línea base, datos y supuestos & 15\% \\
+Coherencia entre demanda, eficiencia y alternativa propuesta & 20\% \\
+Pre-dimensionamiento y trazabilidad de cálculos & 20\% \\
+Seguridad, operación, mantenimiento y fin de vida & 10\% \\
+Viabilidad económica, social y organizativa & 10\% \\
+Comunicación técnica y calidad de la sustentación & 10\% \\
+\bottomrule
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Errores frecuentes que se deben evitar}
+\begin{itemize}
+    \item Dimensionar paneles sin conocer el consumo o el perfil horario.
+    \item Proponer baterías sin justificar su función.
+    \item Confundir potencia instalada con energía realmente generada.
+    \item Asumir que toda la generación solar se aprovecha localmente.
+    \item Ignorar sombras, área disponible, condiciones de cubierta y red eléctrica.
+    \item No considerar mantenimiento, repuestos, capacitación y responsables.
+    \item Presentar estimaciones como diseños definitivos.
+    \item Omitir seguridad, disposición final y limitaciones de la propuesta.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusiones del módulo}
+\begin{itemize}
+    \item La eficiencia energética orienta la selección de renovables y almacenamiento.
+    \item La energía solar fotovoltaica requiere análisis de recurso, demanda, área, sombras y condiciones de operación.
+    \item El almacenamiento es una herramienta de flexibilidad, no una solución automática.
+    \item Biomasa, electrificación, microrredes y comunidades energéticas deben evaluarse de manera sistémica.
+    \item La tecnología debe estar acompañada de operación, mantenimiento, seguridad, gobernanza y sostenibilidad financiera.
+    \item Todo pre-dimensionamiento debe ser reproducible, transparente en sus supuestos y validado antes de la implementación.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Lecturas y herramientas sugeridas}
+\begin{itemize}
+    \item Ley 1715 de 2014 y Ley 2099 de 2021.
+    \item CONPES 4075 de 2022.
+    \item Decreto 2236 de 2023 y regulación vigente sobre comunidades energéticas.
+    \item PAI-PROURE 2022--2030.
+    \item Documentación técnica de módulos, inversores, controladores y baterías.
+    \item PVsyst, SAM, RETScreen, HOMER u otras herramientas disponibles.
+    \item QGIS para análisis territorial.
+    \item Python y hojas de cálculo para perfiles de demanda, generación y sensibilidad.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\vfill
+
+{\LARGE \textcolor{AzulInstitucional}{Gracias}}
+
+\vspace{0.5cm}
+
+{\large Módulo 3: Energías renovables, almacenamiento y comunidades energéticas}
+
+\vfill
+\end{frame}
+
+\end{document}
